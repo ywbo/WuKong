@@ -28,6 +28,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -119,9 +120,9 @@ public class AutoCodeController extends BaseController {
 	 */
 	@PostMapping("/createAuto")
 	@ResponseBody
-	public AjaxResult createAuto(AutoConfigModel autoConfigModel) {
+	public AjaxResult createAuto(@RequestBody AutoConfigModel autoConfigModel) {
 		// 根据表名查询表字段集合
-		List<BeanColumn> list = generatorService.queryColumns2(autoConfigModel.getTableName());
+		List<BeanColumn> list =autoConfigModel.getBeanColumns() ;// generatorService.queryColumns2(autoConfigModel.getTableName());
 		// 初始化表信息
 		TableInfo tableInfo = new TableInfo(autoConfigModel.getTableName(), list, autoConfigModel.getTableComment());
 

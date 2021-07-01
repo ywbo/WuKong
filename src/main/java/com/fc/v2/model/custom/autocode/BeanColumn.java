@@ -62,6 +62,27 @@ public class BeanColumn {
 	/**java 首字母大写**/
 	private String javaName;
 	
+	private Integer htmlType=0;
+	
+	
+	enum htmlType{
+		//字符串类型，labne类型，switch按钮类型，时间类型,上传类型
+	    STRING("String",1),
+	    LABLE("lable",2),
+	    SWITCH("switch",3),
+	    TIME("time",4),
+	    UPLOAD("upload",5);
+	    
+	    htmlType(String type, int value) {
+	    	this.type = type;
+	        this.value = value;
+		}
+		public String type;
+		public int value; 
+	    
+	}
+	
+	
 	public BeanColumn() {
 		super();
 	}
@@ -422,7 +443,7 @@ public class BeanColumn {
 			String column_name, String column_key, String numeric_precision, String privileges, String column_comment,
 			String numeric_scale, String column_type, String generation_expression, String ordinal_position,
 			String data_type, String column_default, String character_maximum_length, String character_octet_length,
-			String datetime_precision, String character_set_name, String collation_name
+			String datetime_precision, String character_set_name, String collation_name,String htmlType
 			) {
 		super();
 		this.table_catalog = table_catalog;
@@ -451,6 +472,15 @@ public class BeanColumn {
 		this.jdbcType=getJdbcType();
 		this.javaType=getJavaType();
 		this.javaName=getJavaName();
+		this.htmlType=getHtmlType();
+	}
+
+	public Integer getHtmlType() {
+		return htmlType;
+	}
+
+	public void setHtmlType(Integer htmlType) {
+		this.htmlType = htmlType;
 	}
     
 	
