@@ -226,7 +226,9 @@ td .layui-form-select{
     <span>离线</span>
     {{# } }}
 </script>
-
+<script type="text/javascript" th:inline="javascript">
+var dictTypes_list = [[${dictTypes}]];
+</script>
 <th:block th:include="include :: footer"/>
 <script>
     layui.use(['table', 'dtree','form','element','jquery'], function () {
@@ -250,13 +252,22 @@ td .layui-form-select{
                 {title: '是否可为空', field: 'is_nullable', align: 'center'},
                 {title: '默认值', field: 'column_default', align: 'center'},
                 {title: '备注', width:300,field: 'column_comment', align: 'center',width:150},
-                {title: '操作', field: 'htmlType', align: 'center',templet:function(data){
+                {title: '字段类型', field: 'htmlType', align: 'center',templet:function(data){
                 	var html="<select lay-filter=\"demo\" init-data='"+data.LAY_TABLE_INDEX+"'>";
-                	    html+="<option value=\"1\">String</option>";
-                	    html+="<option value=\"2\">lable</option>";
+                	    html+="<option value=\"1\">字符串</option>";
+                	    html+="<option value=\"2\">字典表</option>";
                 	    html+="<option value=\"3\">switch</option>";
-                	    html+="<option value=\"4\">time</option>";
-                	    html+="<option value=\"5\">upload</option>";
+                	    html+="<option value=\"4\">时间类型</option>";
+                	    html+="<option value=\"5\">文件上传</option>";
+                		html+="</select>";
+                	return html;
+                }},
+                {title: '字典选择', field: 'dictTypeName', align: 'center',templet:function(data){
+                	
+                	var html="<select lay-filter=\"demo2\" init-data='"+data.LAY_TABLE_INDEX+"'>";
+                		for(var i=0;i<dictTypes_list.length;i++){
+                			html+="<option value=\""+dictTypes_list[i].dictType+"\">"+dictTypes_list[i].dictName+"</option>";
+                		}
                 		html+="</select>";
                 	return html;
                 }}
@@ -295,6 +306,15 @@ td .layui-form-select{
         	var init_data=$(data.elem).attr("init-data");
         	var checkStatus = table.cache["global-table"][init_data];
         	checkStatus.htmlType=data.value;
+        	console.log("sss"+JSON.stringify(checkStatus));
+		});
+        
+		form.on('select(demo2)', function(data){
+        	
+        	var init_data=$(data.elem).attr("init-data");
+        	var checkStatus = table.cache["global-table"][init_data];
+        	checkStatus.dictTypeName=data.value;
+        	debugger
         	console.log("sss"+JSON.stringify(checkStatus));
 		});
         

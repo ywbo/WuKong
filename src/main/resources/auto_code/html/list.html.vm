@@ -58,10 +58,12 @@
 		#if(${column.htmlType} == 2)
 
 <script type="text/html" id="${column.beanName}-type">
-    {{\#if (d.${column.beanName} == 1) { }}
-    <span class="layui-badge layui-bg-orange">要还</span>
-    {{# }else if(d.${column.beanName} == -1){ }}
-    <span class="layui-badge layui-bg-blue">不还</span>
+	
+#foreach ($dictData in $column.autoDictType.dictDatas)
+
+	{{\#if (d.${column.beanName} == ${dictData.dictValue}) { }}
+    <span class="layui-badge layui-bg-${dictData.listClass}-blue">${dictData.dictLabel}</span>
+#end
     {{# } }}
 </script>
 		#elseif(${column.htmlType} == 3)
@@ -91,10 +93,11 @@
 <script type="text/javascript" th:inline="javascript">
 #foreach ($column in $beanColumns)
 #if(${column.htmlType} == 2)
-	var ${column.beanName}_list = [[${@dict.getType('${column.beanName}_type')}]];
+	var ${column.beanName}_list = [[\${@dict.getType('$column.autoDictType.dictType.dictType')}]];
+	
 #end
 #end
-
+	
 	window.selectDictLabel=function(datas, value) {
 		var actions = [];
 	    $.each(datas, function(index, dict) {

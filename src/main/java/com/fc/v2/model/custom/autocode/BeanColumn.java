@@ -6,6 +6,22 @@ import com.fc.v2.util.StringUtils;
  * 实体列
  */
 public class BeanColumn {
+	public String getDictTypeName() {
+		return dictTypeName;
+	}
+
+	public void setDictTypeName(String dictTypeName) {
+		this.dictTypeName = dictTypeName;
+	}
+
+	public AutoDictType getAutoDictType() {
+		return autoDictType;
+	}
+
+	public void setAutoDictType(AutoDictType autoDictType) {
+		this.autoDictType = autoDictType;
+	}
+
 	/** 表\目录 **/
 	private String table_catalog;
 	/** 是否为null **/
@@ -63,6 +79,11 @@ public class BeanColumn {
 	private String javaName;
 	
 	private Integer htmlType=0;
+	
+	//字典表名字
+	private String dictTypeName;
+	/**字典表里面的数据**/
+	private AutoDictType autoDictType;
 	
 	
 	enum htmlType{
@@ -443,7 +464,9 @@ public class BeanColumn {
 			String column_name, String column_key, String numeric_precision, String privileges, String column_comment,
 			String numeric_scale, String column_type, String generation_expression, String ordinal_position,
 			String data_type, String column_default, String character_maximum_length, String character_octet_length,
-			String datetime_precision, String character_set_name, String collation_name,String htmlType
+			String datetime_precision, String character_set_name, String collation_name,String htmlType,String dictTypeName,
+			AutoDictType autoDictType
+			
 			) {
 		super();
 		this.table_catalog = table_catalog;
@@ -473,6 +496,8 @@ public class BeanColumn {
 		this.javaType=getJavaType();
 		this.javaName=getJavaName();
 		this.htmlType=getHtmlType();
+		this.dictTypeName=getDictTypeName();
+		this.autoDictType=getAutoDictType();
 	}
 
 	public Integer getHtmlType() {
