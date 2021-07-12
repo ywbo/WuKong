@@ -184,7 +184,7 @@ public class ${tableInfo.javaTableName}Service implements BaseService<${tableInf
 	 * @return
 	 */
 	public int updateVisible(${tableInfo.javaTableName} ${tableInfo.javaTableName_a}) {
-		return ${tableInfo.javaTableName}Mapper.updateByPrimaryKeySelective(${tableInfo.javaTableName_a});
+		return ${tableInfo.javaTableName_a}Mapper.updateByPrimaryKeySelective(${tableInfo.javaTableName_a});
 	}
 
 
