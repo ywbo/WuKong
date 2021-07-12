@@ -88,12 +88,11 @@
 	#end
 #end
 
-#if($isupload==true)
 
 <script type="text/javascript" th:inline="javascript">
 #foreach ($column in $beanColumns)
 #if(${column.htmlType} == 2)
-	var ${column.beanName}_list = [[\${@dict.getType('$column.autoDictType.dictType.dictType')}]];
+	var ${column.beanName}_list = [[${@dict.getType('$column.autoDictType.dictType.dictType')}]];
 	
 #end
 #end
@@ -123,8 +122,6 @@
 	}
 </script>	
 	
-	
-#end	
 
 
 <th:block th:include="include :: footer"/>
