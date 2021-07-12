@@ -78,7 +78,7 @@ public class BeanColumn {
 	/**java 首字母大写**/
 	private String javaName;
 	
-	private Integer htmlType=0;
+	private Integer htmlType=1;//是字符串类型
 	
 	//字典表名字
 	private String dictTypeName;

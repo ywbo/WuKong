@@ -117,7 +117,7 @@ public class AdminController extends BaseController {
 		}
 		
 		// 判断验证码
-		if (yz) {
+		if (true) {
 			String userName = user.getUsername();
 			Subject currentUser = SecurityUtils.getSubject();
 			// 是否验证通过

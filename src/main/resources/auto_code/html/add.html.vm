@@ -73,7 +73,7 @@
 							              
 							#else
 							
-											<div class="layui-form-item">
+											<div class="layui-form-item layui-hide">
 							                    <label class="layui-form-label">${column.column_comment}</label>
 							                    <div class="layui-input-block">
 							                        <input type="text" th:value="*{${column.beanName}}" name="${column.beanName}" lay-verify="title"
