@@ -124,6 +124,7 @@
 #end
         //保存
         form.on('submit(${tableInfo.javaTableName_a}-save)', function (data) {
+        	let loader = layer.load();
             $.ajax({
                 url: MODULE_PATH+'/add',
                 data: data.field,
@@ -135,9 +136,11 @@
                         layer.msg(result.msg, {icon: 1, time: 1000}, function () {
                             parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
                             parent.layui.table.reload("${tableInfo.javaTableName_a}-table");
+                            layer.close(loader);
                         });
                     } else {
                         layer.msg(result.msg, {icon: 2, time: 1000});
+                        layer.close(loader);
                     }
                 }
             })
