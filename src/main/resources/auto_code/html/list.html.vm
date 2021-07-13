@@ -69,7 +69,7 @@
 		#elseif(${column.htmlType} == 3)
 
 <script type="text/html" id="${column.beanName}-enable">
-    <input type="checkbox" name="${column.beanName}" value="{{d.id}}" lay-skin="switch" lay-text="已邮|未邮" lay-filter="${column.beanName}-enable" {{d.${column.beanName}== 1 ? 'checked' : '' }} >
+    <input type="checkbox" name="${column.beanName}" value="{{d.id}}" lay-skin="switch" lay-text="是|否" lay-filter="${column.beanName}-enable" {{d.${column.beanName}== 1 ? 'checked' : '' }} >
 </script>
 		#elseif(${column.htmlType} == 5)
 			#set($isupload =true)
