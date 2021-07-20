@@ -144,4 +144,5 @@ AlibabaCloud：https://gitee.com/matevip/matecloud
 
 ### 使用v2做得系统
 
-
+###牛油果
+[![Giteye chart](https://chart.giteye.net/gitee/bdj/SpringBoot_v2/Q9GZ48L3.png)](https://giteye.net/chart/Q9GZ48L3)
