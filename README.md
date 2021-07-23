@@ -137,20 +137,9 @@ master为最新皮肤
 | v2皮肤           | [https://gitee.com/Jmysy/Pear-Admin-Layui](https://gitee.com/pear-admin/Pear-Admin-Layui)                   |
                                                                                  
 
-
-
-
-
-
-
 ### Java公众号推荐:
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0515/105530_93e6ed60_123301.png "java葵花宝典.png")
 
-
-
-### 精品开源项目推荐
-- [)
-- [](?_from=gitee_search)
 
 ### 使用v2做得系统
 
