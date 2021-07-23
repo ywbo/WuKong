@@ -134,7 +134,7 @@ master为最新皮肤
 | AgileBPM GVP项目  | [https://gitee.com/agile-bpm](https://gitee.com/agile-bpm)  | 专注于解决企业工作流实施难的问题  |
 | AlibabaCloud     | [https://gitee.com/matevip/matecloud](https://gitee.com/matevip/matecloud)  | MateCloud是一款基于Spring Cloud Alibaba的微服务架构 |
 | ApiBoot | [https://gitee.com/minbox-projects/api-boot](https://gitee.com/minbox-projects/api-boot)    | 为接口服务而生  |
-| v2皮肤           | [https://gitee.com/Jmysy/Pear-Admin-Layui](https://gitee.com/pear-admin/Pear-Admin-Layu)                   |
+| v2皮肤           | [https://gitee.com/Jmysy/Pear-Admin-Layui](https://gitee.com/pear-admin/Pear-Admin-Layui)                   |
                                                                                  
 
 
