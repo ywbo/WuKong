@@ -124,13 +124,23 @@ master为最新皮肤
 - https://gitee.com/y_project/RuoYi-fast 借鉴ry.js
 
 
-### AgileBPM GVP项目
-专注于解决企业工作流实施难的问题
-https://gitee.com/agile-bpm
 
 
-### cloud项目推荐
-AlibabaCloud：https://gitee.com/matevip/matecloud
+### 精品项目推荐
+
+|项目名称 | 项目地址 | 项目介绍 |
+|---|---|---|
+| Jpom GVP项目      | [https://gitee.com/dromara/Jpom](http://https://gitee.com/dromara/Jpom) | 一款简而轻的低侵入式在线构建、自动部署、日常运维、项目监控软件|
+| AgileBPM GVP项目  | [https://gitee.com/agile-bpm](http://https://gitee.com/agile-bpm)  | 专注于解决企业工作流实施难的问题  |
+| AlibabaCloud     | [https://gitee.com/matevip/matecloud](http://https://gitee.com/matevip/matecloud)  | MateCloud是一款基于Spring Cloud Alibaba的微服务架构 |
+| ApiBoot | [https://gitee.com/minbox-projects/api-boot](http://https://gitee.com/minbox-projects/api-boot)    | 为接口服务而生  |
+| v2皮肤           | [https://gitee.com/Jmysy/Pear-Admin-Layui](http://https://gitee.com/Jmysy/Pear-Admin-Layui)                   |
+                                                                                 
+
+
+
+
+
 
 
 ### Java公众号推荐:
@@ -139,8 +149,8 @@ AlibabaCloud：https://gitee.com/matevip/matecloud
 
 
 ### 精品开源项目推荐
-- [https://gitee.com/Jmysy/Pear-Admin-Layui](https://gitee.com/Jmysy/Pear-Admin-Layui)
-- [ApiBoot为接口服务而生](https://gitee.com/minbox-projects/api-boot?_from=gitee_search)
+- [)
+- [](?_from=gitee_search)
 
 ### 使用v2做得系统
 
