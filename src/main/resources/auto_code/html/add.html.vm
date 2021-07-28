@@ -107,10 +107,16 @@
 </form>
 <th:block th:include="include :: footer"/>
 <script>
-    layui.use(['form','laydate','jquery'], function () {
+    layui.use(['form','laydate',#if($isupload==true)'upload',#end'jquery'], function () {
         let form = layui.form;
         let $ = layui.jquery;
         let MODULE_PATH = rootPath+"/${tableInfo.javaTableName}Controller";
+#if($isupload==true)
+
+		let FILE_PATH = rootPath+"/oss";
+        let upload = layui.upload;
+        let BucketName='[[${BucketName}]]';
+#end
 #if($isdate==true)
 		var laydate = layui.laydate;
         //同时绑定多个
@@ -122,6 +128,37 @@
           });
         });
 #end
+
+#if($isupload==true)
+#foreach ($column in $beanColumns)
+		#if(${column.column_key} != 'PRI')
+			#if(${column.htmlType} == 5)
+
+				//拖拽上传 文档：https://www.layui.com/doc/modules/upload.html
+				upload.render({
+					elem: '#${column.beanName}_ImgUpload'
+					,url: FILE_PATH+"/object/"+BucketName //改成您自己的上传接口
+					,field: 'object' //设定文件域的字段名
+					,done: function(result){
+						console.log(result);
+						if (result.code==200) {
+							layer.msg('上传成功');
+							layui.$('#${column.beanName}_ImgUpload_View').removeClass('layui-hide').find('img').attr('src', result.data.objectContent.httpRequest.uri);
+							if(result.data.key!=null){
+								$("#${column.beanName}").val(result.data.key);
+							}
+						} else {
+							layer.msg(result.msg, {icon: 2, time: 1000});
+						}
+					}
+				});
+
+
+			#end
+		#end
+#end
+#end
+
         //保存
         form.on('submit(${tableInfo.javaTableName_a}-save)', function (data) {
         	let loader = layer.load();
