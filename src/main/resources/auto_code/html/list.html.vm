@@ -200,7 +200,7 @@
 
         //查询按钮绑定
         form.on('submit(${tableInfo.javaTableName_a}-query)', function (data) {
-            table.reload('${tableInfo.javaTableName_a}-table', {where: data.field})
+            table.reload('${tableInfo.javaTableName_a}-table', {page: {curr: 1}, where: data.field})
             return false;
         });
 
