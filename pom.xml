@@ -244,11 +244,32 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			<!-- jar运行配置 -->
+			<!-- jar运行配置 正常打包-->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			
+			<!-- 打瘦包 需要把上面正常打包注释，复制出 lib文件夹 jar 运行方式 java -Dloader.path="WEB-INF\lib"  -jar v2-0.0.1-SNAPSHOT.jar  
+			<plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <layout>ZIP</layout>
+                     <includes>
+                         <include>
+                             <groupId>nothing</groupId>
+                             <artifactId>nothing</artifactId>
+                         </include>
+                         <include>
+                             <groupId>com.fc.V2Application</groupId>
+                             <artifactId>common</artifactId>
+                         </include>
+                     </includes>
+                </configuration>
+            </plugin>
+			-->
+			
 		</plugins>
 	</build>
 
