@@ -16,6 +16,13 @@ master为最新皮肤
 ##### 2. 遵循开源真谛，一切免费才是真开源
 ##### 3. 不求回报，你使用快乐就是这个项目最大的快乐！
 
+### 分支介绍
+
+| 版本名称 | 说明 | 地址 |
+| :---: | :---: | :---: |
+| master | 主分支 | https://gitee.com/bdj/SpringBoot_v2 |
+| mybatis-plus | 持久层框架升级为mybatis-plus | https://gitee.com/bdj/SpringBoot_v2/tree/mybatis-plus/ |
+| 20210101v2 | 老版本v2 | https://gitee.com/bdj/SpringBoot_v2/tree/20210101v2/ |
 
 
 ### 开发环境
