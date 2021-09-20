@@ -19,3 +19,5 @@ rebel.xml
 /.apt_generated/
 /bin/
 /.apt_generated_tests/
+/.settings/
+

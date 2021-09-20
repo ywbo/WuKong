@@ -6,7 +6,7 @@ import com.fc.v2.model.auto.TsysOperLog;
 import com.fc.v2.model.custom.Service;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +39,7 @@ public class ServiceController extends BaseController{
 	 */
 	@ApiOperation(value = "展示页面", notes = "展示页面")
 	@GetMapping("/view")
-	@RequiresPermissions("system:service:view")
+	@SaCheckPermission("system:service:view")
     public String view(ModelMap model)
     {
     	List<SysNotice> sysNotices= sysNoticeService.getNEW();
