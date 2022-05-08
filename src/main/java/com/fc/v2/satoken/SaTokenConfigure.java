@@ -1,5 +1,9 @@
 package com.fc.v2.satoken;
 
+import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.util.StrUtil;
+import com.fc.v2.common.conf.V2Config;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -16,6 +20,9 @@ import cn.dev33.satoken.interceptor.SaAnnotationInterceptor;
 import cn.dev33.satoken.router.SaRouter;
 import cn.dev33.satoken.stp.StpUtil;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Sa-Token 配置 
  * @author kong
@@ -23,7 +30,28 @@ import cn.dev33.satoken.stp.StpUtil;
  */
 @Configuration
 public class SaTokenConfigure implements WebMvcConfigurer {
-
+	@Autowired
+	private V2Config v2Config;
+	//开放权限的url
+	private  final String[] excludePaths = {
+			"/favicon.ico", "/static/**",
+			// 对所有用户认证
+			"/admin/login",
+			//手机登录
+			"/admin/API/login",
+			// 放验证码
+			"/captcha/**",
+			// 释放 druid 监控画面
+			"/druid/**",
+			// 释放websocket请求
+			"/websocket",
+			// 前端
+			"/", "/index",
+			// 任务调度暂时放开
+			"/quartz/**",
+			// 开放APicontroller
+			"/ApiController/**",
+			"/oss/**", "/druid/**"};
 	/**
 	 * 注册 Sa-Token 的注解拦截器，打开注解式鉴权功能 
 	 */
@@ -37,32 +65,17 @@ public class SaTokenConfigure implements WebMvcConfigurer {
      */
     @Bean
     public SaServletFilter getSaServletFilter() {
+		List<String> satoken_not_urls=v2Config.getSaToeknNotFilterUrl();
+		String [] str=satoken_not_urls.toArray(new String[satoken_not_urls.size()]);
+		//集合转成,字符串
+		str=ArrayUtil.addAll(excludePaths, str);
         return new SaServletFilter()
 
                 // 指定 拦截路由
                 .addInclude("/**")
                 
                 // 指定 放行路由
-                .addExclude(
-                		"/favicon.ico", "/static/**", 
-            			// 对所有用户认证
-            			"/admin/login",
-            			//手机登录 
-            			"/admin/API/login",
-            			// 放验证码
-            			"/captcha/**",
-            			// 释放 druid 监控画面
-            			"/druid/**", 
-            			// 释放websocket请求
-            			"/websocket",
-            			// 前端
-            			"/", "/index", 
-            			// 任务调度暂时放开
-            			"/quartz/**",
-            			// 开放APicontroller
-            			"/ApiController/**",
-            			"/oss/**", "/druid/**"
-                		)
+                .addExclude(str)
 
                 // 认证函数: 每次请求执行 
                 .setAuth(r -> {

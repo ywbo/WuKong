@@ -19,6 +19,10 @@ fuce:
   demo-enabled: false
   #漂亮得拖动验证码 默认false普通验证码、true滚动验证码
   roll-verification: false
+  #xss不拦截url
+  xss-not-filter-url: [/api/v1/token/api_token,/api/v1/yibaotong/save]
+  #shiro不拦截url
+  sa-toekn-not-filter-url: [/api/v1/token/api_token,/api/v1/yibaotong/save]
 #tomcat config
 server :
   port : 8080
