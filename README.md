@@ -1,12 +1,12 @@
-### 公告
+10577095231057709523124.70.187.180### 公告
 
 由于以前的v2有白屏bug（偶尔需要点击2次才能展示内容，无法debug），个人无法解决，v2以前全新换皮肤。如果你要研究可以查看分支：【20210101v2】
-master为最新皮肤
+sa-token为最新皮肤
 
 
 ### 前言
 - SpringBoot_v2项目是努力打造springboot框架的极致细腻的脚手架。包括一套漂亮的前台。无其他杂七杂八的功能，原生纯净。
-- 服务器演示：http://47.99.218.99:8080/springboot_v2/ 账号:admin 密码:admin
+- 服务器演示：http://124.70.187.180:8080/springboot_v2/ 账号:admin 密码:admin
 老版本v2分支为[20210101v2](https://gitee.com/bdj/SpringBoot_v2/tree/20210101v2/)
 目前mater为新皮肤
 
@@ -47,7 +47,7 @@ master为最新皮肤
 - maven编译安装pom.xml文件即可打包成war
 
 ### 登陆地址
-- 服务器:http://47.99.218.99:8080/springboot_v2/ 该数据库只有查询权限跟新增权限，所以修改以及删除会报错
+- 服务器:http://124.70.187.180:8080/springboot_v2/ 该数据库只有查询权限跟新增权限，所以修改以及删除会报错
 - 本地 http://localhost:8080   默认帐号密码: admin/admin
 - swagger  http://localhost:8080/swagger-ui.html
 
@@ -86,8 +86,8 @@ master为最新皮肤
 
 ### 开发者联系
 - QQ：87766867 
-- QQ群：881799237 
-<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=a8770621a7c51a904d667db47312b320d30e5c5581bb46103c2d5a8486cb8dce"><img border="0" src="https://images.gitee.com/uploads/images/2019/0530/203513_ac6773bf_123301.png" alt="SrpringBoot-v2" title="SrpringBoot-v2"></a>  进群备注springbootv2
+- QQ群：1057709523 
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=EJrZ3wXI"><img border="0" src="https://images.gitee.com/uploads/images/2019/0530/203513_ac6773bf_123301.png" alt="SrpringBoot-v2" title="SrpringBoot-v2"></a>  进群备注springbootv2
 
 有任何问题可以提出
 
@@ -104,7 +104,7 @@ master为最新皮肤
 - https://gitee.com/bdj/SpringBoot_v2/wikis
 
 ### 项目视频列表
-- 自动生成代码视频：https://www.ixigua.com/i6770180517477220875/
+- 自动生成代码视频：qq群文件里面
 
 ### 更新日志
 - https://gitee.com/bdj/SpringBoot_v2/wikis/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97?sort_id=1452970
@@ -132,10 +132,6 @@ master为最新皮肤
 
 
 
-### 工作流合作
-分支已经集成了 **驰骋工作流** 、表单引擎中间件.纯国产工作流，支持10多种数据库，支持saas,单组织，集团模式。
-[官网地址](https://ccfast.cc/?Frm=SpringBoot2.v)
-
 
 ### 精品项目推荐
 
@@ -153,6 +149,9 @@ master为最新皮肤
 
 
 ### 使用v2做得系统
+
+- SpringBoot_v2 极简代码生成器
+https://gitee.com/dubai03/Codegenerator_v2
 
 ###牛油果
 [![Giteye chart](https://chart.giteye.net/gitee/bdj/SpringBoot_v2/Q9GZ48L3.png)](https://giteye.net/chart/Q9GZ48L3)
