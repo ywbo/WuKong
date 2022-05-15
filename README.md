@@ -121,7 +121,7 @@ sa-token为最新皮肤
 | modelc      |QQ1219171582             | 框架结构整理                                |                                        |
 | ok 克里斯汀          |                         | 增加 druid 连接池                  |                                        |
 | JanHezz     |QQ975532442              | 引入了 quartz 框架              | 个人博客推荐：http://www.luckyhe.com        |
-| 一休                           |QQ438081243              | 添加字典表模块                            | 个人码云地址：https://gitee.com/notutu      |
+| 一休                           |QQ438081243              | 添加字典表模块                            | 码云地址：https://gitee.com/notutu      |
 | 愿得一人心               |QQ1065001748             | 修改 try 流 bug       | 个人博客推荐：https://www.songyaxu.com      |
 | Aini-H      |QQ1057718016             | 七牛云上传                                   |                                        |
 
