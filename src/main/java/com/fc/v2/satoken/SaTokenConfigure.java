@@ -65,7 +65,7 @@ public class SaTokenConfigure implements WebMvcConfigurer {
      */
     @Bean
     public SaServletFilter getSaServletFilter() {
-		List<String> satoken_not_urls=v2Config.getSaToeknNotFilterUrl();
+		List<String> satoken_not_urls=v2Config.getSaTokenNotFilterUrl();
 		String [] str=satoken_not_urls.toArray(new String[satoken_not_urls.size()]);
 		//集合转成,字符串
 		str=ArrayUtil.addAll(excludePaths, str);

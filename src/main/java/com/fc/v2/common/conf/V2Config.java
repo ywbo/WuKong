@@ -35,7 +35,7 @@ public class V2Config
     /** xss不拦截url配置 **/
     private List<String> xssNotFilterUrl;
     /** shiro不拦截url配置 **/
-    private List<String> saToeknNotFilterUrl;
+    private List<String> saTokenNotFilterUrl;
     
 	public String getName() {
 		return name;
@@ -97,12 +97,11 @@ public class V2Config
 	public void setXssNotFilterUrl(List<String> xssNotFilterUrl) {
 		this.xssNotFilterUrl = xssNotFilterUrl;
 	}
-
-	public List<String> getSaToeknNotFilterUrl() {
-		return saToeknNotFilterUrl;
+	public List<String> getSaTokenNotFilterUrl() {
+		return saTokenNotFilterUrl;
+	}
+	public void setSaTokenNotFilterUrl(List<String> saTokenNotFilterUrl) {
+		this.saTokenNotFilterUrl = saTokenNotFilterUrl;
 	}
 
-	public void setSaToeknNotFilterUrl(List<String> saToeknNotFilterUrl) {
-		this.saToeknNotFilterUrl = saToeknNotFilterUrl;
-	}
 }

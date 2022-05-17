@@ -22,7 +22,7 @@ fuce:
   #xss不拦截url
   xss-not-filter-url: [/api/v1/token/api_token,/api/v1/yibaotong/save]
   #shiro不拦截url
-  sa-toekn-not-filter-url: [/api/v1/token/api_token,/api/v1/yibaotong/save]
+  sa-token-not-filter-url: [/api/v1/token/api_token,/api/v1/yibaotong/save]
 #tomcat config
 server :
   port : 8080
