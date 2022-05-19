@@ -197,7 +197,7 @@ public class AdminController extends BaseController {
 					logger.info("对用户[" + userName + "]进行登录验证..验证未通过,未知账户");
 					return AjaxResult.error(500, "未知账户");
 				}
-				if (SaSecureUtil.md5(user.getPassword()).equals(queryUser.getPassword())) {
+				if (!SaSecureUtil.md5(user.getPassword()).equals(queryUser.getPassword())) {
 					logger.info("对用户[" + userName + "]进行登录验证..验证未通过,错误的凭证");
 					return AjaxResult.error(500, "用户名或密码不正确");
 				}
