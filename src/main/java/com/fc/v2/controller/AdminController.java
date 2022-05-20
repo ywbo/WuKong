@@ -1,6 +1,8 @@
 package com.fc.v2.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -177,7 +179,7 @@ public class AdminController extends BaseController {
 	@PostMapping("/API/login")
 	@ResponseBody
 	public AjaxResult APIlogin(TsysUser user,boolean rememberMe,HttpServletRequest request) {
-		// ModelAndView view =new ModelAndView();
+
 		Boolean yz = true;
 //		if (V2Config.getRollVerification()) {// 滚动验证
 //			yz = true;
@@ -185,7 +187,6 @@ public class AdminController extends BaseController {
 //			String scode = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
 //			yz = StringUtils.isNotEmpty(scode) && StringUtils.isNotEmpty(code) && scode.equals(code);
 //		}
-		System.out.println("/API/login手机请求");
 		// 判断验证码
 		if (yz) {
 			String userName = user.getUsername();
@@ -206,12 +207,14 @@ public class AdminController extends BaseController {
 				StpUtil.login(queryUser.getId(), rememberMe);
 				SaTokenUtil.setUser(queryUser);
 				StpUtil.getTokenSession().set("ip", ServletUtils.getIP(request));
-				return AjaxResult.success().put("tokenInfo", StpUtil.getTokenInfo());
+				Map<String, Object> map=new HashMap<String, Object>();
+				map.put("token",StpUtil.getTokenInfo());
+				map.put("userinfo", queryUser);
+				return AjaxResult.success().put("data",map);
 			} else {
 				if (StringUtils.isNotNull(SaTokenUtil.getUser())) {
 					// 跳转到 get请求的登陆方法
-					// view.setViewName("redirect:/"+prefix+"/index");
-					return AjaxResult.successData(200, StpUtil.getTokenValue()); 
+					return AjaxResult.successData(200,  StpUtil.getTokenInfo()).put("msg","登录成功"); 
 				} else {
 					return AjaxResult.error(500, "未知账户");
 				}
@@ -219,6 +222,7 @@ public class AdminController extends BaseController {
 		} else {
 			return AjaxResult.error(500, "验证码不正确!");
 		}
+
 
 	}
 
