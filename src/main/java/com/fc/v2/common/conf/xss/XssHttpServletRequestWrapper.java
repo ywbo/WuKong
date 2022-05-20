@@ -26,7 +26,8 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 	@Override
 	public String getHeader(String name) {
 		String value = super.getHeader(name);
-		return XssUtil.cleanXSS(value);
+		//return XssUtil.cleanXSS(value);
+		return value;
 	}
  
 	/**

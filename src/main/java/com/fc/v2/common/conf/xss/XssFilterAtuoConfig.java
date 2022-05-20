@@ -3,12 +3,7 @@ package com.fc.v2.common.conf.xss;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fc.v2.common.conf.V2Config;
-
-import cn.hutool.core.util.ArrayUtil;
-import cn.hutool.core.util.StrUtil;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -29,8 +24,8 @@ public class XssFilterAtuoConfig {
 	 * @return
 	 */
 	@Bean
-	public FilterRegistrationBean xssFiltrRegister() {
-		FilterRegistrationBean registration = new FilterRegistrationBean();
+	public FilterRegistrationBean<SimpleCORSFilter> xssFiltrRegister() {
+		FilterRegistrationBean<SimpleCORSFilter> registration = new FilterRegistrationBean<SimpleCORSFilter>();
 		//设置系统过滤器 (setFilter就是你所定义的过滤器filter类)
 		registration.setFilter(new SimpleCORSFilter());
 	
@@ -45,12 +40,11 @@ public class XssFilterAtuoConfig {
 		if(xssnoturlList!=null&&xssnoturlList.size()>0) {
 			xssnot=String.join(",", xssnoturlList);
 		}
-		
-		
 		//添加忽略的格式以及链接请求
 		registration.addInitParameter("exclusions","*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid2/*,"+xssnot);
 		//优先级
 		registration.setOrder(1);
+		
 		return registration;
 	}
  

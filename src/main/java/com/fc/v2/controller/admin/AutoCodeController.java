@@ -177,7 +177,7 @@ public class AutoCodeController extends BaseController {
 		TableInfo tableInfo = new TableInfo(autoConfigModel.getTableName(), list, autoConfigModel.getTableComment());
 		// 自动生成
 		AutoCodeUtil.autoCodeOneModel(tableInfo, autoConfigModel, zip);
-		IOUtils.closeQuietly(zip);
+		IOUtils.close(zip);
 		b = outputStream.toByteArray();
 		response.reset();
 		response.setHeader("Content-Disposition", "attachment; filename=\"v2.zip\"");
