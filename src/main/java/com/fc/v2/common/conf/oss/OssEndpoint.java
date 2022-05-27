@@ -1,11 +1,9 @@
-
 package com.fc.v2.common.conf.oss;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;
@@ -28,6 +25,7 @@ import com.fc.v2.model.auto.TsysUser;
 import com.fc.v2.satoken.SaTokenUtil;
 import com.fc.v2.service.SysFileService;
 import com.fc.v2.util.SnowflakeIdWorker;
+import cn.hutool.crypto.digest.MD5;
 
 /**
  * aws 对外提供服务端点
@@ -102,20 +100,35 @@ public class OssEndpoint {
 	@PostMapping("/object/{bucketName}")
 	public AjaxResult createObject(@RequestBody MultipartFile object, @PathVariable String bucketName) throws Exception {
 		String fileName = object.getOriginalFilename();
-		String suffixName = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
-		String uuid=SnowflakeIdWorker.getUUID();
-		String fileSuffixName=uuid+suffixName;
+		String suffixName=".png";
+		String mediaKey="";
+		//文件名字
+		String fileSuffixName="";
+		if(fileName.lastIndexOf(".")!=-1) {//有后缀
+			 suffixName = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
+			 mediaKey=MD5.create().digestHex(fileSuffixName);
+			 fileSuffixName=mediaKey+suffixName;
+		}else {//无后缀
+			//取得唯一id
+			 mediaKey = MD5.create().digestHex(fileName+suffixName);
+			 fileSuffixName=mediaKey+suffixName;
+		}
 		PutObjectResult putObjectResult=template.putObject(bucketName, fileSuffixName, object.getInputStream(), object.getSize(), object.getContentType());
 		if(putObjectResult!=null){
-			TsysUser tsysUser=SaTokenUtil.getUser();
-			SysFile sysFile=null;
-			if(tsysUser!=null) {
-				sysFile=new SysFile(uuid,  fileSuffixName,  bucketName, object.getSize(), object.getContentType(),SaTokenUtil.getUserId(), SaTokenUtil.getLoginName(), new Date(),null, null, null);
+			SysFile sysFile=sysFileService.selectByExamplefileName(fileSuffixName);
+			
+			if(sysFile==null) {//等于空为新增查询不到的文件
+				if(SaTokenUtil.isLogin()) {
+					sysFile=new SysFile(SnowflakeIdWorker.getUUID(),  fileSuffixName,  bucketName, object.getSize(), object.getContentType(),SaTokenUtil.getUserId(), SaTokenUtil.getLoginName(), new Date(),null, null, null);
+				}else {
+					sysFile=new SysFile(SnowflakeIdWorker.getUUID(),  fileSuffixName,  bucketName, object.getSize(), object.getContentType(),"-", "-", new Date(),null, null, null);
+				}
+				int i=sysFileService.insertSelective(sysFile);
+				if(i>0){
+					return AjaxResult.successData(200,template.getObjectInfo(bucketName,  fileSuffixName));
+				}
+				
 			}else {
-				sysFile=new SysFile(uuid,  fileSuffixName,  bucketName, object.getSize(), object.getContentType(),"-", "-", new Date(),null, null, null);
-			}
-			int i=sysFileService.insertSelective(sysFile);
-			if(i>0){
 				return AjaxResult.successData(200,template.getObjectInfo(bucketName,  fileSuffixName));
 			}
 		}
