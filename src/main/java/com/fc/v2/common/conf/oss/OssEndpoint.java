@@ -106,7 +106,7 @@ public class OssEndpoint {
 		String fileSuffixName="";
 		if(fileName.lastIndexOf(".")!=-1) {//有后缀
 			 suffixName = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
-			 mediaKey=MD5.create().digestHex(fileSuffixName);
+			 mediaKey=MD5.create().digestHex(fileName);
 			 fileSuffixName=mediaKey+suffixName;
 		}else {//无后缀
 			//取得唯一id
