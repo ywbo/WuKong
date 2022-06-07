@@ -25,10 +25,11 @@
 							<div class="layui-form-item">
 			                    <label class="layui-form-label">${column.column_comment}</label>
 			                    <div class="layui-input-block">
-			                        <select  name="${column.beanName}">
-			                    		<option value="-1">否</option>
-			                    		<option value="1">是</option>
-			                    	</select>
+			                        
+			                    	<select name="${column.beanName}" th:with="type=${@dict.getType('${column.AutoDictType.dictType.dictType}')}">
+										<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+									</select>
+			                    	
 			                    </div>
 			                </div>
 							#elseif(${column.htmlType} == 3)
@@ -36,10 +37,9 @@
 							<div class="layui-form-item">
 			                    <label class="layui-form-label">${column.column_comment}</label>
 			                    <div class="layui-input-block">
-			                        <select  name="${column.beanName}">
-			                    		<option value="-1">否</option>
-			                    		<option value="1">是</option>
-			                    	</select>
+			                    	<select name="${column.beanName}" th:with="type=${@dict.getType('${column.AutoDictType.dictType.dictType}')}">
+										<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+									</select>
 			                    </div>
 			                </div> 
 							#elseif(${column.htmlType} == 4)
