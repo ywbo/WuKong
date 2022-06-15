@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fc.v2.common.base.BaseController;
 import com.fc.v2.common.domain.AjaxResult;
-import com.fc.v2.common.domain.ResuTree;
+import com.fc.v2.common.domain.ResultTree;
 import com.fc.v2.common.domain.ResultTable;
 import com.fc.v2.model.auto.TsysPermission;
 import com.fc.v2.model.custom.Tablepar;
@@ -218,7 +218,7 @@ public class PermissionController  extends BaseController{
 	@ApiOperation(value = "根据角色id获取所有打勾权限", notes = "根据角色id获取 所有打勾权限")
     @GetMapping("/getCheckPrem")
     @ResponseBody
-    public ResuTree getCheckPrem(String roleId){
+    public ResultTree getCheckPrem(String roleId){
 
     	return dataTree(sysPermissionService.getRolePower(roleId));
     }
@@ -260,7 +260,7 @@ public class PermissionController  extends BaseController{
 
     @GetMapping("/selectParent")
 	@ResponseBody
-    public ResuTree selectParent(){
+    public ResultTree selectParent(){
         List<TsysPermission> list = sysPermissionService.getall(null);
         TsysPermission basePower = new TsysPermission();
         basePower.setName("顶级权限");

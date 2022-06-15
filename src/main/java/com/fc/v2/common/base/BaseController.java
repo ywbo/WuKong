@@ -3,7 +3,7 @@ package com.fc.v2.common.base;
 import cn.hutool.core.util.StrUtil;
 import com.fc.v2.common.conf.V2Config;
 import com.fc.v2.common.domain.AjaxResult;
-import com.fc.v2.common.domain.ResuTree;
+import com.fc.v2.common.domain.ResultTree;
 import com.fc.v2.common.domain.ResultTable;
 import com.fc.v2.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -140,10 +140,10 @@ public class BaseController
      * Param data
      * Return Tree数据
      * */
-    protected  static ResuTree dataTree(Object data){
-         ResuTree resuTree = new ResuTree();
-         resuTree.setData(data);
-         return resuTree;
+    protected  static ResultTree dataTree(Object data){
+         ResultTree resultTree = new ResultTree();
+         resultTree.setData(data);
+         return resultTree;
     }
     /**
      * Describe: 返回数据表格数据 分页

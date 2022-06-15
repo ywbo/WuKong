@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fc.v2.common.base.BaseController;
 import com.fc.v2.common.domain.AjaxResult;
-import com.fc.v2.common.domain.ResuTree;
+import com.fc.v2.common.domain.ResultTree;
 import com.fc.v2.common.domain.ResultTable;
 import com.fc.v2.model.custom.TsysTables;
 import com.fc.v2.model.custom.TsysTablesVo;
@@ -92,7 +92,7 @@ public class AutoCodeController extends BaseController {
 	 */
 	@GetMapping("/selectTables")
 	@ResponseBody
-	public ResuTree selectTables() {
+	public ResultTree selectTables() {
 		List<TsysTables> list = generatorService.queryList(null);
 		List<TsysTablesVo> TreeList = new ArrayList<TsysTablesVo>();
 		for (int i = 0; i < list.size(); i++) {

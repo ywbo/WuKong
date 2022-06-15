@@ -6,7 +6,7 @@ package com.fc.v2.common.domain;
  * CreateTime: 2019/10/23
  * */
 
-public class ResuTree {
+public class ResultTree {
 
     /**
      * 状态信息
@@ -69,10 +69,10 @@ public class ResuTree {
         this.data = data;
     }
 
-    public ResuTree() {
+    public ResultTree() {
     }
 
-    public ResuTree(Status status, Object data) {
+    public ResultTree(Status status, Object data) {
         this.status = status;
         this.data = data;
     }
