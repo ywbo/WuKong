@@ -32,4 +32,3 @@ Spring Boot Version: ${spring-boot.version}
   :        /  |"-     '
   '           |      /
               `      |                             
-${AnsiColor.WHITE}
