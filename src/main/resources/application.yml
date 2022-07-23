@@ -3,7 +3,7 @@ fuce:
   #名称
   name: v2
   #版本
-  version: 4.2
+  version: 5
   #版权年份
   copyright-year: 2018
   #邮件功能
@@ -63,6 +63,8 @@ spring :
       exclude: test/**
   mvc:   #静态文件
     static-path-pattern : /static/**
+    pathmatch:
+      matching-strategy: ant_path_matcher
   #模板引擎
   thymeleaf:
     model: HTML5

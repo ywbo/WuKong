@@ -1,5 +1,6 @@
 package com.fc.v2.common.quartz;
 
+import com.fc.v2.common.spring.SpringUtils;
 import com.fc.v2.model.auto.SysQuartzJob;
 import com.fc.v2.model.auto.SysQuartzJobExample;
 import com.fc.v2.service.SysQuartzJobService;
@@ -25,12 +26,12 @@ public class QuartzSchedulerUtil {
 
     @Autowired
     private  Scheduler scheduler;
-    @Autowired
-    private SysQuartzJobService sysQuartzJobService; 
+   // @Autowired
+   // private SysQuartzJobService sysQuartzJobService;
 
     //这个东西可以放在配置文件中
     //cron表达式 一分钟执行一次
-    private final  String TEST_CRON="0 0/1 * * * ?";
+    private final String TEST_CRON="0 0/1 * * * ?";
 
     /**
      * 容器初始化时执行此方法
@@ -38,62 +39,21 @@ public class QuartzSchedulerUtil {
      */
     @PostConstruct
     public void init() throws SchedulerException {
-    	
-    	List<SysQuartzJob> quartzJobs=sysQuartzJobService.selectByExample(new SysQuartzJobExample());
-    	for (SysQuartzJob job : quartzJobs) {
-    		try {
-                //防止因为数据问题重复创建
-                if(checkJobExists(job))
-                {
-                    deleteJob(job);
-                }
-                createSchedule(job);
-	        } catch (SchedulerException e) {
-	            e.printStackTrace();
-	        }
-		}
-        //这一块可以从数据库中查
-//        for (int i=1;i<=1;i++)
-//        {
-//            SysQuartzJob job=new SysQuartzJob();
-//            job.setId("332182389491109888");
-//            job.setJobName("v2Task2");
-//            job.setJobGroup("SYSTEM");
-//            job.setCronExpression("*/6 * * * * ?");
-//            //并发执行
-//            job.setConcurrent("0");
-//            //0启用
-//            job.setStatus(1);
-//            //执行的job类
-//            job.setInvokeTarget("v2Task.runTask2(1,2l,'asa',true,2D)");
-//            try {
-//                //防止因为数据问题重复创建
-//                if(checkJobExists(job))
-//                {
-//                    deleteJob(job);
-//                }
-//                createSchedule(job);
-//	        } catch (SchedulerException e) {
-//	            e.printStackTrace();
-//	        }
-//        }
-
         start();
-
     }
 
     /**
      * 启动定时器
      */
     public void start()
-{
-    try {
-        scheduler.start();
-    } catch (SchedulerException e) {
-        e.printStackTrace();
-        System.out.println("定时任务执行失败");
+    {
+        try {
+            scheduler.start();
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+            System.out.println("定时任务执行失败");
+        }
     }
-}
 
 
     /**
@@ -101,7 +61,7 @@ public class QuartzSchedulerUtil {
      * @param job
      * @throws SchedulerException
      */
-    private void createSchedule(SysQuartzJob job) throws SchedulerException {
+    public  void createSchedule(SysQuartzJob job) throws SchedulerException {
         if (!checkJobExists(job)) {
             //获取指定的job工作类
             Class<? extends Job> jobClass = getQuartzJobClass(job);
@@ -186,7 +146,7 @@ public class QuartzSchedulerUtil {
      * @param job
      * @return
      */
-    public boolean deleteJob(SysQuartzJob job) {
+    public  boolean deleteJob(SysQuartzJob job) {
         boolean bl = false;
         try {
             //JobKey定义了job的名称和组别
@@ -251,7 +211,7 @@ public class QuartzSchedulerUtil {
      * @return
      * @throws SchedulerException
      */
-    public boolean checkJobExists(SysQuartzJob job) throws SchedulerException {
+    public  boolean checkJobExists(SysQuartzJob job) throws SchedulerException {
         TriggerKey triggerKey = TriggerKey.triggerKey(ScheduleConstants.TASK_CLASS_NAME+job.getId(), job.getJobGroup());
         return scheduler.checkExists(triggerKey);
     }

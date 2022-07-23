@@ -15,7 +15,7 @@ import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
@@ -31,12 +31,11 @@ public class SysQuartzJobService implements BaseService<SysQuartzJob, SysQuartzJ
 	@Autowired
 	private SysQuartzJobMapper sysQuartzJobMapper;
 	@Autowired
-	private QuartzSchedulerUtil scheduler;
+	private QuartzSchedulerUtil quartzSchedulerUtil;
       	   	      	      	      	      	      	      	      	      	
 	/**
 	 * 分页查询
-	 * @param pageNum
-	 * @param pageSize
+	 * @param tablepar
 	 * @return
 	 */
 	 public PageInfo<SysQuartzJob> list(Tablepar tablepar,String name){
@@ -73,7 +72,7 @@ public class SysQuartzJobService implements BaseService<SysQuartzJob, SysQuartzJ
 		int i= sysQuartzJobMapper.updateByPrimaryKeySelective(record);
 		if(i>0) {
 			//修改定时器
-			scheduler.modifyJob(record);
+			quartzSchedulerUtil.modifyJob(record);
 		}
 		return i;
 	}
@@ -147,7 +146,7 @@ public class SysQuartzJobService implements BaseService<SysQuartzJob, SysQuartzJ
         int rows = sysQuartzJobMapper.updateByPrimaryKeySelective(job);
         if (rows > 0)
         {
-        	scheduler.resumeJob(job);
+			quartzSchedulerUtil.resumeJob(job);
         }
         return rows;
     }
@@ -166,7 +165,7 @@ public class SysQuartzJobService implements BaseService<SysQuartzJob, SysQuartzJ
         int rows = sysQuartzJobMapper.updateByPrimaryKeySelective(job);
         if (rows > 0)
         {
-        	scheduler.pauseJob(job);
+			quartzSchedulerUtil.pauseJob(job);
         }
         return rows;
     }
@@ -201,10 +200,32 @@ public class SysQuartzJobService implements BaseService<SysQuartzJob, SysQuartzJ
     @Transactional
     public void run(SysQuartzJob job) throws SchedulerException
     {
-    	
-    	scheduler.run(job);
+
+		quartzSchedulerUtil.run(job);
     	
     }
 
 
+
+	/**
+	 * 容器初始化时执行此方法
+	 * 也就是类初始化的时候
+	 */
+	@PostConstruct
+	public void init() throws SchedulerException {
+
+    	List<SysQuartzJob> quartzJobs=sysQuartzJobMapper.selectByExample(new SysQuartzJobExample());
+    	for (SysQuartzJob job : quartzJobs) {
+    		try {
+                //防止因为数据问题重复创建
+                if(quartzSchedulerUtil.checkJobExists(job))
+                {
+					quartzSchedulerUtil.deleteJob(job);
+                }
+				quartzSchedulerUtil.createSchedule(job);
+	        } catch (SchedulerException e) {
+	            e.printStackTrace();
+	        }
+		}
+	}
 }
