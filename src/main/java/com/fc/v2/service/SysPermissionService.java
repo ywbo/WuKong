@@ -48,8 +48,6 @@ public class SysPermissionService implements BaseService<TsysPermission, TsysPer
 	        if(searchText!=null&&!"".equals(searchText)){
 	        	testExample.createCriteria().andNameLike("%"+searchText+"%");
 	        }
-
-	        PageHelper.startPage(tablepar.getPage(), tablepar.getLimit());
 	        List<TsysPermission> list= tsysPermissionMapper.selectByExample(testExample);
 	        PageInfo<TsysPermission> pageInfo = new PageInfo<TsysPermission>(list);
 	        return  pageInfo;
