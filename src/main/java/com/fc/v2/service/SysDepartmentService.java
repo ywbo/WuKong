@@ -47,7 +47,6 @@ public class SysDepartmentService implements BaseService<SysDepartment, SysDepar
 			testExample.setOrderByClause(
 					StringUtils.toUnderScoreCase(tablepar.getOrderByColumn()) + " " + tablepar.getIsAsc());
 		}
-		PageHelper.startPage(tablepar.getPage(), tablepar.getLimit());
 		List<SysDepartment> list = sysDepartmentMapper.selectByExample(testExample);
 		PageInfo<SysDepartment> pageInfo = new PageInfo<SysDepartment>(list);
 		return pageInfo;
