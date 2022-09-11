@@ -143,7 +143,7 @@ jkd依然1.8可以运行
 | AlibabaCloud     | [https://gitee.com/matevip/matecloud](https://gitee.com/matevip/matecloud)  | MateCloud是一款基于Spring Cloud Alibaba的微服务架构 |
 | ApiBoot | [https://gitee.com/minbox-projects/api-boot](https://gitee.com/minbox-projects/api-boot)    | 为接口服务而生  |
 | v2皮肤           | [https://gitee.com/Jmysy/Pear-Admin-Layui](https://gitee.com/pear-admin/Pear-Admin-Layui)                   |
-| 小诺cloud           | [https://www.xiaonuo.vip)                   |
+| 小诺cloud           | [https://www.xiaonuo.vip](https://www.xiaonuo.vip))                   | cloud推荐使用
                                                                                     
 
 ### Java公众号推荐:
