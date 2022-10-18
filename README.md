@@ -2,7 +2,7 @@
 
 master不在更新，master不在更新，master不在更新。
 主分支为sa-token版本，目前springboot已经升级到2.6版本
-jkd依然1.8可以运行
+jdk依然1.8可以运行
 
 
 ### 前言
